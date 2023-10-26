@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo Avançado</title>
     <script src="scripts/script.js" defer></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./styles/styles.css">
     <!--Font Awsome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -22,9 +22,8 @@
                         <i class="fa-thin fa-plus"></i>
                     </button>
                 </section>
-            </form>
-        <section>
-            <form id="edit-form">
+            </form>        <section>
+            <form id="edit-form" class="hide">
                 <p>Edite a sua tarefa</p>
                 <div class="form-control">
                     <input type="text" id="edit-input">
@@ -35,17 +34,17 @@
                 <button id="cancel-edit-btn">Cancelar</button>
             </form>
         </section>    
-        <section id="toolBar">
+        <section id="toolbar">
             <div id="search">
                 <h4>Pesquiar:</h4>
                 <form>
                     <input type="text" id="search-input" placeholder="buscar">
                     <button id="erase-button">
-                        <i-fa class="fa-    solid fa-delete-left"></i-fa>
+                        <i-fa class="fa-solid fa-delete-left"></i-fa>
                     </button>
                 </form>
             </div>
-        </section>
+        
      <section id="filter">
         <h4>Filtrar:</h4>
         <select id="filter-select">
@@ -54,6 +53,7 @@
             <option value="todo">A fazer</option>
         </select>
      </section>
+    </section>
      <section id="todo-list">
          <div class="todo">
             <h3>Estou estudando Js</h3>
