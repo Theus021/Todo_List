@@ -28,15 +28,15 @@ const filterTodos = (filterValue) => {
       );
       break;
 
-    case "done":
+    case "todo":
       todos.forEach((todo) =>
         !todo.classList.contains("done")
-        ? (todos.style.display = "flex")
-        : (todos.style.display = "none")
-      )
+          ? (todo.style.display = "flex")
+          : (todo.style.display = "none")
+      );
 
-      default: 
-      break
+    default:
+      break;
   }
 };
 
