@@ -12,23 +12,49 @@ let oldInputValue;
 
 // funcoes
 
+const filterTodos = (filterValue) => {
+  const todos = document.querySelectorAll(".todo");
+
+  switch (filterValue) {
+    case "all":
+      todos.forEach((todo) => (todo.style.display = "flex"));
+      break;
+
+    case "done":
+      todos.forEach((todo) =>
+        todo.classList.contains("done")
+          ? (todo.style.display = "flex")
+          : (todo.style.display = "none")
+      );
+      break;
+
+    case "done":
+      todos.forEach((todo) =>
+        !todo.classList.contains("done")
+        ? (todos.style.display = "flex")
+        : (todos.style.display = "none")
+      )
+
+      default: 
+      break
+  }
+};
+
 const getSearchTodo = (search) => {
+  const todos = document.querySelectorAll(".todo");
 
-  const todos = document.querySelectorAll(".todo")
-  
   todos.forEach((todo) => {
-    let todoTitle = todo.querySelector("h3").innerText.toLowerCase()
+    let todoTitle = todo.querySelector("h3").innerText.toLowerCase();
 
-    const normalizedSeach = search.toLowerCase()
+    const normalizedSeach = search.toLowerCase();
 
     todo.style.display = "flex";
 
-    if(!todoTitle.includes(normalizedSeach)) {
+    if (!todoTitle.includes(normalizedSeach)) {
       todo.style.display = "none";
     }
-
-  })
-}
+  });
+};
 
 const saveTodo = (text) => {
   const todo = document.createElement("div");
@@ -37,7 +63,6 @@ const saveTodo = (text) => {
   const todoTitle = document.createElement("h3");
   todoTitle.innerText = text;
   todo.appendChild(todoTitle);
-
 
   const doneBtn = document.createElement("button");
   doneBtn.classList.add("finish-todo");
@@ -88,7 +113,6 @@ todoForm.addEventListener("submit", (e) => {
   if (inputValue) {
     saveTodo(inputValue);
   }
-
 });
 
 document.addEventListener("click", (e) => {
@@ -116,7 +140,6 @@ document.addEventListener("click", (e) => {
 });
 
 editForm.addEventListener("submit", (e) => {
-
   e.preventDefault();
 
   const editInputValue = editInput.value;
@@ -126,7 +149,6 @@ editForm.addEventListener("submit", (e) => {
   }
 
   toggleForms();
-
 });
 
 cancelInput.addEventListener("click", (e) => {
@@ -135,15 +157,21 @@ cancelInput.addEventListener("click", (e) => {
 });
 
 searchInput.addEventListener("keyup", (e) => {
-  const search = e.target.value
+  const search = e.target.value;
 
-  getSearchTodo(search)
-})
+  getSearchTodo(search);
+});
 
 erasebtn.addEventListener("click", (e) => {
-  e.preventDefault()
+  e.preventDefault();
 
-  searchInput.value = ""
+  searchInput.value = "";
 
-  searchInput.dispatchEvent(new Event("keyup"))
-})
+  searchInput.dispatchEvent(new Event("keyup"));
+});
+
+filterbtn.addEventListener("change", (e) => {
+  const filterValue = e.target.value;
+
+  filterTodos(filterValue);
+});
