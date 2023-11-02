@@ -56,7 +56,7 @@ const getSearchTodo = (search) => {
   });
 };
 
-const saveTodo = (text) => {
+const saveTodo = (text, done = false , save = 1) => {
   const todo = document.createElement("div");
   todo.classList.add("todo");
 
@@ -78,6 +78,15 @@ const saveTodo = (text) => {
   removeBtn.classList.add("remove-todo");
   removeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
   todo.appendChild(removeBtn);
+
+  //açoes com o localStorage
+  if(done) {
+    todo.classList.add('done')
+  }
+
+  if(save) {
+    saveTodoLocalStorage({text, done})
+  }
 
   todoList.appendChild(todo);
 
@@ -175,3 +184,18 @@ filterbtn.addEventListener("change", (e) => {
 
   filterTodos(filterValue);
 });
+
+//localStorage
+
+const getTodosLocalStorage = () => {
+  const todos = JSON.parse(localStorage.getItem("todos")) || []
+  return todos
+}
+
+const saveTodoLocalStorage = (todo) => {
+  const todos = getTodosLocalStorage()
+
+  todos.push(todo)
+
+  localStorage.setItem("todos", JSON.stringify(todos))
+}
