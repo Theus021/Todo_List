@@ -108,6 +108,8 @@ const updateTodo = (text) => {
 
     if (todoTitle.innerText === oldInputValue) {
       todoTitle.innerText = text;
+
+      updataTodoTextLocalStorage(oldInputValue, text)
     }
   });
 };
@@ -220,11 +222,20 @@ const filterTodos = todos.filter((todo) => todo.text !== todoText)
 localStorage.setItem("todos", JSON.stringify(filterTodos))
 }
 
-const updateTodoLocalStorage = (todoText) => {
+const updateTodoStatusLocalStorage = (todoText) => {
   const todos = getTodosLocalStorage()
 
   todos.map((todo) => {
     todo.text === todoText ? (todo.done = !todo.done) : null 
+  })
+  localStorage.setItem("todos", JSON.stringify(todos))
+}
+
+const updataTodoTextLocalStorage = (oldInputText, newInputText) => {
+  const todos = getTodosLocalStorage()
+
+  todos.map((todo) => {
+    todo.text === oldInputText ? (todo.text = newInputText) : null
   })
   localStorage.setItem("todos", JSON.stringify(todos))
 }
