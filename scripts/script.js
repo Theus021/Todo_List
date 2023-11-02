@@ -135,6 +135,8 @@ document.addEventListener("click", (e) => {
 
   if (targetElement.classList.contains("finish-todo")) {
     parentElement.classList.toggle("done");
+
+    updateTodoLocalStorage(todoTitle)
   }
 
   if (targetElement.classList.contains("remove-todo")) {
@@ -216,6 +218,15 @@ const todos = getTodosLocalStorage()
 const filterTodos = todos.filter((todo) => todo.text !== todoText)
 
 localStorage.setItem("todos", JSON.stringify(filterTodos))
+}
+
+const updateTodoLocalStorage = (todoText) => {
+  const todos = getTodosLocalStorage()
+
+  todos.map((todo) => {
+    todo.text === todoText ? (todo.done = !todo.done) : null 
+  })
+  localStorage.setItem("todos", JSON.stringify(todos))
 }
 
 loadDataLocalStorage()
